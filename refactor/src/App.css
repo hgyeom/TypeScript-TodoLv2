@@ -1,0 +1,95 @@
+/* layout */
+.layout {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  min-width: 800px;
+}
+
+/* header */
+.app-heder {
+  display: flex;
+}
+
+/* form */
+form {
+  height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid grey;
+  margin-top: 10px;
+}
+
+form button {
+  height: 35px;
+  width: 100px;
+  margin: auto;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+form button:hover {
+  cursor: pointer;
+}
+
+.form-input {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-left: 10px;
+}
+
+.form-input input {
+  width: 300px;
+  height: 30px;
+  /* margin은 위, 오른쪽, 아래, 왼쪽 순서 */
+  margin: 0px 10px 0px 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
+}
+
+.form-input label {
+  margin-top: 4px;
+  word-break: keep-all;
+}
+
+/* todoList */
+.todo-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  min-height: 300px;
+  margin-bottom: 30px;
+}
+
+/* card */
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  min-height: 300px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 5px;
+  word-break: break-all;
+  margin-top: 5px;
+}
+
+.card-button {
+  margin-bottom: 10px;
+}
+.card-button button {
+  width: 70px;
+  height: 40px;
+  margin: 0px 3px 0px 3px;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+.card-button button:hover {
+  cursor: pointer;
+}
