@@ -3,3 +3,5 @@
 # 2023.06.22 - Todo List Redux Refactoring
 
 # 2023.07.11 - Todo List Simple Darkmode
+
+# 2023.07.28 - Todo List TypeScript Refactoring
