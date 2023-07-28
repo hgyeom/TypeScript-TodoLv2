@@ -1,13 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "redux/config/configStore";
 import { changeTheme } from "redux/modules/theme";
 import { styled } from "styled-components";
 
 const ThemeToggle = () => {
   const dispatch = useDispatch();
-  const theme = useSelector<any>((state) => state.theme);
+  const theme = useSelector((state: RootState) => state.theme);
   const onClickThemeToggle = () => {
-    dispatch(changeTheme(theme));
+    if (theme) {
+      dispatch(changeTheme(theme));
+    }
   };
   return (
     <div>

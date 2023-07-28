@@ -1,15 +1,22 @@
-const CHANGE_THEME = "theme/reducer/CHANGE_THEME";
+enum ActionTypes {
+  CHANGE_THEME = "theme/reducer/CHANGE_THEME",
+}
 
-export const changeTheme = (payload: any) => {
+type ChangeTheme = {
+  type: ActionTypes.CHANGE_THEME;
+  payload: string;
+};
+
+export const changeTheme = (payload: string) => {
   return {
-    type: CHANGE_THEME,
+    type: ActionTypes.CHANGE_THEME,
     payload,
   };
 };
 
-const theme = (state = "light", action: any) => {
+const theme = (state = "light", action: ChangeTheme) => {
   switch (action.type) {
-    case CHANGE_THEME:
+    case ActionTypes.CHANGE_THEME:
       return action.payload === "light" ? "dark" : "light";
     default:
       return state;

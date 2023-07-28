@@ -1,41 +1,42 @@
+import { Action, ActionTypes, Todo } from "model/todos";
 import uuid from "react-uuid";
 
-// action value
-const ADD_TODO = "todo/reducer/ADD_TODO";
-const REMOVE_TODO = "todo/reducer/REMOVE_TODO";
-const CHANGE_TODO = "todo/reducer/CHANGE_TODO";
-const READ_TODO = "todo/reducer/READ_TODO";
-
-//action creator
-export const addTodo = (payload: any) => {
+// action creator
+export const addTodo = (payload: Todo) => {
   return {
-    type: ADD_TODO,
+    type: ActionTypes.ADD_TODO,
     payload,
   };
 };
 
-export const removeTodo = (payload: any) => {
+export const removeTodo = (payload: string) => {
   return {
-    type: REMOVE_TODO,
+    type: ActionTypes.REMOVE_TODO,
     payload,
   };
 };
 
-export const changeTodo = (payload: any) => {
+export const changeTodo = (payload: string) => {
   return {
-    type: CHANGE_TODO,
+    type: ActionTypes.CHANGE_TODO,
     payload,
   };
 };
 
-export const readTodo = (payload: any) => {
+export const readTodo = (payload: string) => {
   return {
-    type: READ_TODO,
+    type: ActionTypes.READ_TODO,
     payload,
   };
 };
 
-const initialState = {
+// state의 타입
+type TodoState = {
+  todos: Todo[];
+  todo?: Todo;
+};
+
+const initialState: TodoState = {
   todos: [
     {
       id: uuid(),
@@ -56,39 +57,32 @@ const initialState = {
       isDone: false,
     },
   ],
-  todo: {
-    id: "0",
-    title: "",
-    body: "",
-    isDone: false,
-  },
 };
 
-const todos = (state = initialState, action: any) => {
+const todos = (state = initialState, action: Action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case ActionTypes.ADD_TODO:
       return { ...state, todos: [...state.todos, action.payload] };
-    case REMOVE_TODO:
+    case ActionTypes.REMOVE_TODO:
       return {
         todos: state.todos.filter((todo) => todo.id !== action.payload),
       };
-    case CHANGE_TODO:
+    case ActionTypes.CHANGE_TODO:
       return {
-        todos: state.todos.map((todo) => {
-          if (todo.id === action.payload) {
-            todo.isDone = !todo.isDone;
-            return todo;
-          } else {
-            return todo;
-          }
-        }),
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload ? { ...todo, isDone: !todo.isDone } : todo
+        ),
       };
-    case READ_TODO:
-      return {
-        ...state,
-        todo: state.todos.find((todo) => todo.id === action.payload),
-      };
-
+    case ActionTypes.READ_TODO:
+      if (action.payload) {
+        const todo = state.todos.find((todo) => todo.id === action.payload);
+        return {
+          ...state,
+          todo: todo as Todo,
+        };
+      } else {
+        return state;
+      }
     default:
       return state;
   }

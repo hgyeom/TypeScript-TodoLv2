@@ -2,6 +2,7 @@ import uuid from "react-uuid";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "redux/modules/todo";
+import { Todo } from "model/todos";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -10,36 +11,32 @@ const Form = () => {
   const [body, setBody] = useState("");
 
   // title 변경
-  const titleChangeHandler = (e: any) => {
+  const titleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
   // body 변경
-  const bodyChangeHandler = (e: any) => {
+  const bodyChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBody(e.target.value);
   };
 
-  const addButtonClickHandler = (e: any) => {
+  const addButtonClickHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
-    // if (document.querySelector(".title-input").getAttribute("value") === "") {
-    //   alert("제목을 입력해 주세요.");
-    //   document.querySelector(".title-input").focus();
-    //   return;
-    // }
-    // if (document.querySelector(".body-input").getAttribute("value") === "") {
-    //   alert("내용을 입력해 주세요.");
-    //   document.querySelector(".body-input").focus();
-    //   return;
-    // }
+    if (!title || !body) {
+      alert("제목 혹은 내용을 입력해주세요.");
+      return;
+    }
 
-    const todo = {
+    const newTodo: Todo = {
       id: uuid(),
       title,
       body,
       isDone: false,
     };
 
-    dispatch(addTodo(todo));
+    dispatch(addTodo(newTodo));
     setTitle("");
     setBody("");
   };

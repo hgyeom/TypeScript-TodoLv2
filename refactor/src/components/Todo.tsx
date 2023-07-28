@@ -1,18 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "redux/config/configStore";
 import { removeTodo, changeTodo } from "redux/modules/todo";
 
-const Todo = ({ isDone }: any) => {
+type TodoProps = {
+  isDone: boolean;
+};
+
+const Todo = ({ isDone }: TodoProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // store 조회
-  const todoList: any = useSelector<any>((state) => state.todos.todos);
-  console.log(todoList);
-  const removeButtonClickHandler = (id: any) => {
+  const todoList = useSelector((state: RootState) => state.todos.todos);
+
+  const removeButtonClickHandler = (id: string) => {
     dispatch(removeTodo(id));
   };
 
-  const changeButtonClickHandler = (id: any) => {
+  const changeButtonClickHandler = (id: string) => {
     dispatch(changeTodo(id));
   };
 
@@ -21,8 +26,8 @@ const Todo = ({ isDone }: any) => {
       <h2>{isDone ? "Done" : "Working"}</h2>
       <section className="todo-wrapper">
         {todoList
-          .filter((item: any) => item.isDone === isDone)
-          .map((todo: any) => {
+          .filter((item) => item.isDone === isDone)
+          .map((todo) => {
             return (
               <div className="card" key={todo.id}>
                 <h3>{todo.title}</h3>
