@@ -40,20 +40,14 @@ const initialState: TodoState = {
   todos: [
     {
       id: uuid(),
-      title: "리액트",
-      body: "리액트 과제 끝내기",
+      title: "타입스크립트",
+      body: "타입스크립트 과제 끝내기",
       isDone: true,
     },
     {
       id: uuid(),
-      title: "리액트",
-      body: "리액트 강의 다시보기",
-      isDone: false,
-    },
-    {
-      id: uuid(),
-      title: "알고리즘",
-      body: "프로그래머스 문제 풀기",
+      title: "aws",
+      body: "aws 강의 보기",
       isDone: false,
     },
   ],
@@ -78,7 +72,7 @@ const todos = (state = initialState, action: Action) => {
         const todo = state.todos.find((todo) => todo.id === action.payload);
         return {
           ...state,
-          todo: todo as Todo,
+          todo: todo,
         };
       } else {
         return state;
@@ -87,4 +81,5 @@ const todos = (state = initialState, action: Action) => {
       return state;
   }
 };
+
 export default todos;

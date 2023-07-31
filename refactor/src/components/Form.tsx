@@ -7,8 +7,8 @@ import { Todo } from "model/todos";
 const Form = () => {
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState<string>("");
+  const [body, setBody] = useState<string>("");
 
   // title 변경
   const titleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
