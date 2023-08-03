@@ -7,7 +7,7 @@ ${reset}
     box-sizing: border-box;
 }
 body{
-    background-color: #ffffff;
+    background-color: #fefefe;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif,;
 }
 a{
