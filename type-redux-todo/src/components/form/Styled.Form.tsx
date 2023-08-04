@@ -11,11 +11,12 @@ export const Input = styled.input`
   border: solid 1px;
   padding: 10px;
   border-right: none;
-  width: 20%;
+  width: 15%;
   color: black;
   height: 40px;
   border-color: rgba(255, 117, 140);
   outline: none;
+  min-width: 200px;
 `;
 
 export const Button = styled.button`
@@ -24,7 +25,7 @@ export const Button = styled.button`
   cursor: pointer;
   width: 5%;
   padding: 7px 10px;
-  min-width: 20px;
+  min-width: 50px;
   transition: all 100ms linear 80ms;
   color: white;
   line-height: 1;
